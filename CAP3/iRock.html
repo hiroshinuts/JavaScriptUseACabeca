@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>iRock - A rocha virtual de estimacao</title>
+
+		<script type="text/javascript" src="cookie.js"></script>
+
+		<script type="text/javascript">
+
+		   var userName;
+
+		   function resizeRock() {
+		   		document.getElementById("rockImg").style.height = (document.body.clientHeight - 100) * 0.3;
+		   }
+
+		   function greetUser(){
+		   		if (navigator.cookieEnabled)
+         			 userName = readCookie("irock_username");
+       			if (userName)
+          			alert("Ola " + userName + ", Saudade DoC");
+       			else
+          			alert('Ola, eu sou seu animalzenho.');
+		   }
+
+			
+			function touchRock(){
+
+				if(userName){
+					alert("AAAAAAAAAAAAAA =) , " + userName + ". Obrigado!");
+				}else{
+					userName = prompt("Qual eh seu Nome?", "Entre com seu nome aqui!");
+					if(userName){
+						alert("Prazer em conhecer voce, " + userName + ".");
+						if(navigator.cookieEnabled)
+							writeCookie("irock_username", userName, 5 * 365);
+						else
+						alert("Cookies nao estao habilitados no seu navegador, nao lembrarei de voce, desculpa, sou tipo a Dory!")
+					}
+				}
+					document.getElementById("rockImg").src = "rock_happy.png";
+					setTimeout("document.getElementById('rockImg').src = 'rock.png';" , 5 * 60 * 1000);
+
+
+			}
+
+		</script>
+
+	</head>
+
+	<body onload="resizeRock(); greetUser();" onresize="resizeRock();">
+		<div style="margin-top: 100px; text-align: center">
+			<img id="rockImg" src="rock.png" alt="iRock" style="cursor:pointer" onclick="touchRock();" />
+		</div>
+	</body>
+
+</html>
